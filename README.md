@@ -10,36 +10,19 @@ In this repository, we currently support the following boards:
 
 * Ultra96
 * ZCU104
-* ZCU111
+* KV260 (coming soon)
 
 Other Zynq Ultrascale+ boards may be supported with few adjustments.
-This repository supports Vitis AI 1.2.
+This repository supports Vitis AI 1.4.0.
 
 ## Quick Start
 
-### 1. Upgrading the PYNQ v2.6 image
+### 1. Install
 
-This upgrade step is to make sure users have a DPU-ready image. 
-This step is only required for one time.
-
-On your board, run `su` to use super user. Then run the following commands:
+To install the pynq-dpu on your board, simply run:
 
 ```shell
-git clone --recursive --shallow-submodules https://github.com/Xilinx/DPU-PYNQ.git
-cd DPU-PYNQ/upgrade
-make
-```
-
-The upgrade process may take up to 1 hour, since a few packages will 
-need to be installed. Please be patient. For more information, users can check
-the [PYNQ v2.6 upgrade instructions](./upgrade/README.md)
-
-### 2. Install
-
-Run the following on board:
-
-```shell
-pip3 install pynq-dpu
+pip3 install pynq-dpu --no-build-isolation
 ```
 
 Then go to your jupyter notebook home folder and fetch the notebooks:
@@ -52,14 +35,14 @@ pynq get-notebooks pynq-dpu -p .
 This will make sure the desired notebooks shows up in your jupyter notebook 
 folder.
 
-### 3. Run
+### 2. Run
 
 You are ready to go! Now in jupyter, you can explore the notebooks 
 in `pynq-dpu` folder.
 
 ## Rebuild DPU Block Design
 
-The DPU IP comes from the [Vitis Ai Github](https://github.com/Xilinx/Vitis-AI/tree/v1.2.1).
+The DPU IP comes from the [Vitis Ai Github](https://github.com/Xilinx/Vitis-AI/tree/v1.4.0).
 If you want to rebuild the hardware project, you can refer to the
 [instructions for DPU Hardware Design](./boards/README.md).
 
@@ -73,11 +56,18 @@ These are the overlay files that can be used by the `pynq_dpu` package.
 
 ## Rebuild DPU Models
 
-[DPU models for ZCU104](https://github.com/Xilinx/Vitis-AI/tree/v1.2.1) 
-are available on the Vitis AI GitHub repository.
+[DPU models](https://github.com/Xilinx/Vitis-AI/tree/v1.4) 
+are available on the Vitis AI GitHub repository [model zoo](https://github.com/Xilinx/Vitis-AI/tree/v1.4/models/AI-Model-Zoo),
+where you can find a model-list containing quantized models, as well as pre-compiled .xmodel files
+that can be directly loaded into your DPU application.
 
-If you want to rebuild the DPU models, you can refer to the
+If you want to recompile the DPU models or train your own network, you can refer to the
 [instructions for DPU models](./host/README.md).
 
 
-Copyright (C) 2020 Xilinx, Inc
+----
+----
+
+Copyright (C) 2021 Xilinx, Inc
+
+SPDX-License-Identifier: Apache-2.0
